@@ -57,12 +57,17 @@ const optArticleSelector = ".post",
 function generateTitleLinks() {
   /* remove contents of titleList */
 
-  const titleList = document.querySelector(optArticleSelector);
+  const titleList = document.querySelector(optTitleListSelector);
+
+  function clearMessages() {
+    document.getElementById("messages").innerHTML = ".titles";
+  }
+  clearMessages();
 
   /* for each article */
 
-  function clearMessages() {
-    document.getElementById("messages").innerHTML = "";
+  const articles = document.querySelectorAll(optArticleSelector);
+  for (let article of articles) {
   }
 
   /* get the article id */
