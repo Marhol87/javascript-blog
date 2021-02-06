@@ -77,6 +77,14 @@
 
       /* get the title from the title element */
 
+      const linkHTML =
+        '<li><a href="#' +
+        articleId +
+        '"><span>' +
+        articleTitle +
+        "</span></a></li>";
+      console.log("article:", articleId, articleTitle);
+
       /* create HTML of the link */
 
       /* insert link into titleList */
