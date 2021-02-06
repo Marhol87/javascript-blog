@@ -45,6 +45,7 @@
   };
 
   const links = document.querySelectorAll(".titles a");
+  console.log("links:", links);
 
   for (let link of links) {
     link.addEventListener("click", titleClickHandler);
@@ -65,6 +66,7 @@
     /* for each article */
 
     const articles = document.querySelectorAll(optArticleSelector);
+    let html = "";
     for (let article of articles) {
       /* get the article id */
 
@@ -88,7 +90,11 @@
       /* create HTML of the link */
 
       /* insert link into titleList */
+
+      html = html + linkHTML;
+      console.log("html:", linkHTML);
     }
+    titleList.innerHTML = html;
   }
   generateTitleLinks();
 }
