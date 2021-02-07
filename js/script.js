@@ -47,7 +47,8 @@
   /* NEW EXERCISE */
   const optArticleSelector = ".post",
     optTitleSelector = ".post-title",
-    optTitleListSelector = ".titles";
+    optTitleListSelector = ".titles",
+    optArticleTagsSelector = ".post-tags .list";
 
   function generateTitleLinks() {
     /* remove contents of titleList */
@@ -82,11 +83,10 @@
 
       /* create HTML of the link */
 
-      /* insert link into titleList */
-
       html = html + linkHTML;
       console.log("html:", linkHTML);
     }
+    /* insert link into titleList */
     titleList.innerHTML = html;
   }
   generateTitleLinks();
@@ -97,3 +97,28 @@
     link.addEventListener("click", titleClickHandler);
   }
 }
+
+/* Module 7*/
+function generateTags() {
+  /* find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+  /* START LOOP: for every article: */
+  for (let article of articles) {
+    /* find tags wrapper */
+    const titleList = article.querySelector(optArticleTagsSelector);
+    /* make html variable with empty string */
+    let html = "";
+    /* get tags from data-tags attribute */
+    const articleTags = article.getAttribute("tags");
+    console.log("articleTags:", articleTags);
+    /* split tags into array */
+    /* START LOOP: for each tag */
+    /* generate HTML of the link */
+    /* add generated code to html variable */
+    /* END LOOP: for each tag */
+  }
+  /* insert HTML of all the links into the tags wrapper */
+  /* END LOOP: for every article: */
+}
+
+generateTags();
