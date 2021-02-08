@@ -89,13 +89,13 @@
     /* insert link into titleList */
     titleList.innerHTML = html;
   }
-  generateTitleLinks();
   const links = document.querySelectorAll(".titles a");
   console.log("links:", links);
 
   for (let link of links) {
     link.addEventListener("click", titleClickHandler);
   }
+  generateTitleLinks();
 
   /* Module 7*/
   function generateTags() {
@@ -135,12 +135,20 @@
 
   generateTags();
 
-  function tagClickHandler(event) {
+  const tagClickHandler = function (event) {
     /* prevent default action for this event */
+    event.preventDefault();
     /* make new constant named "clickedElement" and give it the value of "this" */
+    const clickedElement = this;
+    console.log("Link was clicked!");
+    console.log(event);
     /* make a new constant "href" and read the attribute "href" of the clicked element */
+    const articleSelector = clickedElement.getAttribute("href");
+    console.log("articleSelector:", articleSelector);
     /* make a new constant "tag" and extract tag from the "href" constant */
+    const tag = document.querySelectorAll("href");
     /* find all tag links with class active */
+
     /* START LOOP: for each active tag link */
     /* remove class active */
     /* END LOOP: for each active tag link */
@@ -149,7 +157,7 @@
     /* add class active */
     /* END LOOP: for each found tag link */
     /* execute function "generateTitleLinks" with article selector as argument */
-  }
+  };
   tagClickHandler();
 
   function addClickListenersToTags() {
