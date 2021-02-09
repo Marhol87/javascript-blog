@@ -88,12 +88,13 @@
     }
     /* insert link into titleList */
     titleList.innerHTML = html;
-  }
-  const links = document.querySelectorAll(".titles a");
-  console.log("links:", links);
 
-  for (let link of links) {
-    link.addEventListener("click", titleClickHandler);
+    const links = document.querySelectorAll(".titles a");
+    console.log("links:", links);
+
+    for (let link of links) {
+      link.addEventListener("click", titleClickHandler);
+    }
   }
   generateTitleLinks();
 
@@ -108,7 +109,7 @@
       /* make html variable with empty string */
       let html = "";
       /* get tags from data-tags attribute */
-      const articleTags = article.getAttribute("tags");
+      const articleTags = article.getAttribute("data-tags");
       console.log("articleTags:", articleTags);
       /* split tags into array */
       const articleTagsArray = articleTags.split(" ");
@@ -143,10 +144,11 @@
     console.log("Link was clicked!");
     console.log(event);
     /* make a new constant "href" and read the attribute "href" of the clicked element */
-    const articleSelector = clickedElement.getAttribute("href");
-    console.log("articleSelector:", articleSelector);
+    const href = clickedElement.getAttribute("href");
+    console.log("href:", href);
     /* make a new constant "tag" and extract tag from the "href" constant */
     const tag = document.querySelectorAll("href");
+
     /* find all tag links with class active */
 
     /* START LOOP: for each active tag link */
