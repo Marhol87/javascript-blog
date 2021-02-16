@@ -151,20 +151,28 @@
     /* make a new constant "tag" and extract tag from the "href" constant */
     const tag = href.replace("#tag-", "");
     /* find all tag links with class active */
-    document.querySelectorAll('a[href="' + href + '"]');
+    document.querySelectorAll('a.active[href^="#tag-"]');
     /* START LOOP: for each active tag link */
-    /* remove class active */
-    /* END LOOP: for each active tag link */
+    for (let activeTag of activeTags) {
+      /* remove class active */
+      activeTag.classList.remove("active");
+      /* END LOOP: for each active tag link */
+    }
     /* find all tag links with "href" attribute equal to the "href" constant */
+    document.querySelectorAll('a[href="' + href + '"]');
     /* START LOOP: for each found tag link */
-    /* add class active */
-    /* END LOOP: for each found tag link */
+    for (let articleTag of articleTagsArray) {
+      /* add class active */
+      targetArticleTag.classList.add("active");
+      /* END LOOP: for each found tag link */
+    }
     /* execute function "generateTitleLinks" with article selector as argument */
     generateTitleLinks('[data-tags~="' + tag + '"]');
   };
 
   function addClickListenersToTags() {
     /* find all links to tags */
+    const links = document.querySelectorAll("data-tags");
     /* START LOOP: for each link */
     for (let link of links) {
       /* add tagClickHandler as event listener for that link */
