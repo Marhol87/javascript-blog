@@ -49,7 +49,7 @@
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
-    optArticleAuthorSelector = '.post-author .list',
+    optArticleAuthorSelector = '.post-author',
     optTagsListSelector = '.tags.list',
     optCloudClassCount = '5',
     optCloudClassPrefix = 'tag-size-',
@@ -107,7 +107,9 @@
 
   /* Module 7*/
   const calculateTagsParams = function (tags) {
-    const params = Math.max(0), Math.min(999999);
+    const params = {
+      min: Math.max(0), max: Math.min(999999),
+    }
     for(let tag in tags){
       if(tags[tag] > params.max){
         params.max = tags[tag];
@@ -119,13 +121,11 @@
     }
     return params;
   }
-  calculateTagsParams();
 
   const calculateTagClass = function (count, params){
     const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
-    const classNumber = Math.floor( percentage * (optCloudClassPrefix - 1) + 1 );
+    return optCloudClassPrefix + classNumber;
   }
-  calculateTagClass();
 
   const generateTags = function () {
     /* [NEW] create a new variable allTags with an empty object */
