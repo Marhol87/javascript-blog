@@ -252,7 +252,16 @@
       let html = '';
       /* get authors from data-author attribute */
       const articleAuthors = article.getAttribute('data-author');
-      console.log('articleAuthor:', articleAuthors);
+      console.log('articleAuthors:', articleAuthors);
+      const linkHTML =
+          '<li><a href="#author-' +
+          articleAuthors +
+          '"><span>' +
+          articleAuthors +
+          '</span></a></li>';
+        console.log('tag:', articleTags, articleTagsArray);
+        /* add generated code to html variable */
+        html = html + linkHTML;
       /* insert HTML of all the links into the authors wrapper */
       titleList.innerHTML = html;
       /* END LOOP: for every article: */
