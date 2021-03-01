@@ -59,15 +59,13 @@
     console.log('customSelector:', customSelector);
     /* remove contents of titleList */
 
-    const titleList = document.querySelector(
-      optTitleListSelector + customSelector
-    );
+    const titleList = document.querySelector(optTitleListSelector);
 // '.titles' [data-author="Marion Berry"]
     titleList.innerHTML = '';
 
     /* for each article */
 
-    const articles = document.querySelectorAll(optArticleSelector);
+    const articles = document.querySelectorAll(optArticleSelector + customSelector);
     let html = '';
     for (let article of articles) {
       /* get the article id */
@@ -232,7 +230,7 @@
 
   const addClickListenersToTags = function () {
     /* find all links to tags */
-    const links = document.querySelectorAll('a.active[href^="#tag-"]');
+    const links = document.querySelectorAll('a[href^="#tag-"]');
     console.log('links:', links);
     /* START LOOP: for each link */
     for (let link of links) {
