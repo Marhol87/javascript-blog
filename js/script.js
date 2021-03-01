@@ -56,12 +56,13 @@
     optAuthorListSelector = 'authors.list';
 
   const generateTitleLinks = function (customSelector = '') {
+    console.log('customSelector:', customSelector);
     /* remove contents of titleList */
 
     const titleList = document.querySelector(
       optTitleListSelector + customSelector
     );
-
+// '.titles' [data-author="Marion Berry"]
     titleList.innerHTML = '';
 
     /* for each article */
@@ -109,7 +110,7 @@
   const calculateTagsParams = function (tags) {
     const params = {
       min: Math.max(0), max: Math.min(999999),
-    }
+    };
     for(let tag in tags){
       if(tags[tag] > params.max){
         params.max = tags[tag];
@@ -120,12 +121,15 @@
       console.log(tag + ' is used ' + tags[tag] + ' times');
     }
     return params;
-  }
+  };
 
   const calculateTagClass = function (count, params){
+    const normalizedCount = count - params.min;
+    const normalizedMax = params.max - params.min;
+    const percentage = normalizedCount / normalizedMax;
     const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
     return optCloudClassPrefix + classNumber;
-  }
+  };
 
   const generateTags = function () {
     /* [NEW] create a new variable allTags with an empty object */
@@ -154,13 +158,12 @@
           '"><span>' +
           articleTagsArray +
           '</span></a></li>';
-        console.log('tag:', articleTags, articleTagsArray);
         /* add generated code to html variable */
         html = html + linkHTML;
-       /* [NEW] check if this link is NOT already in allTags */
-       if(!allTags[tag]) {
-         /* [NEW] add tag to allTags object */
-         allTags[tag] = 1;
+        /* [NEW] check if this link is NOT already in allTags */
+        if(!allTags[tag]) {
+          /* [NEW] add tag to allTags object */
+          allTags[tag] = 1;
         } else {
           allTags[tag]++;
         }
@@ -170,26 +173,26 @@
       titleList.innerHTML = html;
       /* END LOOP: for every article: */
     }
-      /* [NEW] find list of tags in right column */
-      const tagList = document.querySelector('.tags');
+    /* [NEW] find list of tags in right column */
+    const tagList = document.querySelector('.tags');
 
-      /* [NEW] create variable for all links HTML code */
-      const tagsParams = calculateTagsParams(allTags);
-      console.log('tagsParams:', tagsParams)
-      let allTagsHTML = '';
+    /* [NEW] create variable for all links HTML code */
+    const tagsParams = calculateTagsParams(allTags);
+    console.log('tagsParams:', tagsParams);
+    let allTagsHTML = '';
 
-      /* [NEW] START LOOP: for each tag in allTags: */
-      for(let tag in allTags){
-        /* [NEW] generate code of a link and add it to allTagsHTML */
-        allTagsHTML += tagLinkHTML;
-        const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParam) + '</li>';
-        console.log('tagLinkHTML:', tagLinkHTML);
-      }
-      /* [NEW] END LOOP: for each tag in allTags: */
+    /* [NEW] START LOOP: for each tag in allTags: */
+    for(let tag in allTags){
+      /* [NEW] generate code of a link and add it to allTagsHTML */
+      const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '</li>';
+      console.log('tagLinkHTML:', tagLinkHTML);
+      allTagsHTML += tagLinkHTML;
+    }
+    /* [NEW] END LOOP: for each tag in allTags: */
 
-      /*[NEW] add HTML from allTagsHTML to tagList */
-      tagList.innerHTML = allTagsHTML;
-    };
+    /*[NEW] add HTML from allTagsHTML to tagList */
+    tagList.innerHTML = allTagsHTML;
+  };
 
   generateTags();
 
@@ -254,14 +257,13 @@
       const articleAuthors = article.getAttribute('data-author');
       console.log('articleAuthors:', articleAuthors);
       const linkHTML =
-          '<li><a href="#author-' +
+          '<a href="#author' +
           articleAuthors +
           '"><span>' +
           articleAuthors +
-          '</span></a></li>';
-        console.log('tag:', articleTags, articleTagsArray);
+          '</span></a>';
         /* add generated code to html variable */
-        html = html + linkHTML;
+      html = html + linkHTML;
       /* insert HTML of all the links into the authors wrapper */
       titleList.innerHTML = html;
       /* END LOOP: for every article: */
@@ -306,7 +308,7 @@
 
   const addClickListenersToAuthors = function () {
     /* find all links to authors */
-    const links = document.querySelectorAll('a.active[href^="#author"]');
+    const links = document.querySelectorAll('a[href^="#author"]');
     console.log('links:', links);
     /* START LOOP: for each link */
     for (let link of links) {
