@@ -60,7 +60,7 @@
     /* remove contents of titleList */
 
     const titleList = document.querySelector(optTitleListSelector);
-// '.titles' [data-author="Marion Berry"]
+    // '.titles' [data-author="Marion Berry"]
     titleList.innerHTML = '';
 
     /* for each article */
@@ -116,7 +116,7 @@
       if(tags[tag] < params.min){
         params.min = tags[tag];
       }
-      console.log(tag + ' is used ' + tags[tag] + ' times');
+      // console.log(tag + ' is used ' + tags[tag] + ' times');
     }
     return params;
   };
@@ -144,7 +144,7 @@
       const articleTags = article.getAttribute('data-tags');
       console.log('articleTags:', articleTags);
       /* split tags into array */
-      const articleTagsArray = articleTags.split('data-tags');
+      const articleTagsArray = articleTags.split(' ');
       console.log('articleTagsArray:', articleTagsArray);
       /* START LOOP: for each tag */
       for (let tag of articleTagsArray) {
@@ -182,7 +182,7 @@
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
       /* [NEW] generate code of a link and add it to allTagsHTML */
-      const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '</li>';
+      const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '</a></li>';
       console.log('tagLinkHTML:', tagLinkHTML);
       allTagsHTML += tagLinkHTML;
     }
