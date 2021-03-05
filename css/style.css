@@ -59,34 +59,7 @@ body {
   border: 1px solid #444;
   border-radius: 5px;
 }
-.tags {
-  display: inline;
-}
 
-.tag-size-1 {
-  color: #8b0f43;
-  font-size: 16px;
-}
-
-.tag-size-2 {
-  color: #320833;
-  font-size: 17px;
-}
-
-.tag-size-3 {
-  color: #200303;
-  font-size: 18px;
-}
-
-.tag-size-4 {
-  color: #383a39;
-  font-size: 19px;
-}
-
-.tag-size-5 {
-  color: #31271c;
-  font-size: 20px;
-}
 /* Logo */
 .logo {
   font-family: "Sacramento", cursive;
@@ -136,5 +109,33 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+.tags {
+  display: inline;
+}
+
+.tag-size-1 {
+  color: #5a09f1;
+  font-size: 21px;
+}
+
+.tag-size-2 {
+  color: #d30248;
+  font-size: 45px;
+}
+
+.tag-size-3 {
+  color: #06f32e;
+  font-size: 22px;
+}
+
+.tag-size-4 {
+  color: #663b18;
+  font-size: 25px;
+}
+
+.tag-size-5 {
+  color: rgb(9, 5, 32);
+  font-size: 20px;
 }
 /*# sourceMappingURL=style.css.map */
