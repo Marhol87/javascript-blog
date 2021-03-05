@@ -59,7 +59,34 @@ body {
   border: 1px solid #444;
   border-radius: 5px;
 }
+.tags {
+  display: inline;
+}
 
+.tag-size-1 {
+  color: #8b0f43;
+  font-size: 16px;
+}
+
+.tag-size-2 {
+  color: #320833;
+  font-size: 17px;
+}
+
+.tag-size-3 {
+  color: #200303;
+  font-size: 18px;
+}
+
+.tag-size-4 {
+  color: #383a39;
+  font-size: 19px;
+}
+
+.tag-size-5 {
+  color: #31271c;
+  font-size: 20px;
+}
 /* Logo */
 .logo {
   font-family: "Sacramento", cursive;
