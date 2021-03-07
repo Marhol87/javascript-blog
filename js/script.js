@@ -1,5 +1,10 @@
 'use strict';
 {
+  const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+    // tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML)
+  };
+
   const titleClickHandler = function (event) {
     event.preventDefault();
     const clickedElement = this;
@@ -81,14 +86,16 @@
 
       /* get the title from the title element */
 
-      const linkHTML =
-        '<li><a href="#' +
-        articleId +
-        '"><span>' +
-        articleTitle +
-        '</span></a></li>';
-      // console.log('article:', articleId, articleTitle);
+      // const linkHTML =
+      //   '<li><a href="#' +
+      //   articleId +
+      //   '"><span>' +
+      //   articleTitle +
+      //   '</span></a></li>';
 
+      // console.log('article:', articleId, articleTitle);
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTML = templates.articleLink(linkHTMLData);
       /* create HTML of the link */
 
       html = html + linkHTML;
@@ -148,7 +155,11 @@
       for (let tag of articleTagsArray) {
         // console.log('tag:', tag);
         /* generate HTML of the link */
-        const linkHTML= '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+        const linkHTML= '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>' + ' ';
+
+        // const linkHTMLData = {id: tag, title: tag};
+        // const linkHTML = templates.tagLink(linkHTMLData);
+        // console.log(linkHTML);
         /* add generated code to html variable */
         html = html + linkHTML;
         /* [NEW] check if this link is NOT already in allTags */
