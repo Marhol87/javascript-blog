@@ -108,7 +108,7 @@
 
   /* Module 7*/
   const calculateTagsParams = function (tags) {
-    const params = { min: 999999, max: 0 };
+    const params = {max: 0, min: 9999 };
     for (let tag in tags) {
       if (tags[tag] > params.max) {
         params.max = tags[tag];
@@ -122,10 +122,8 @@
   };
 
   const calculateTagClass = function (count, params) {
-    const normalizedCount = count - params.min;
-    const normalizedMax = params.max - params.min;
-    const percentage = normalizedCount / normalizedMax;
-    const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+    const classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * optCloudClassCount + 1 );
+
     return optCloudClassPrefix + classNumber;
   };
 
@@ -244,23 +242,20 @@
   addClickListenersToTags();
 
   const calculateAuthorsParams = function (authors) {
-    const params = { min: 999999, max: 0 };
-    for (let articleAuthor in authors) {
-      if (authors[articleAuthor] > params.max) {
-        params.max = authors[articleAuthor];
+    const params = {max: 0, min: 9999 };
+    for (let author in authors) {
+      if (authors[author] > params.max) {
+        params.max = authors[author];
       }
-      else if (authors[articleAuthor] < params.min) {
-        params.min = authors[articleAuthor];
+      else if (authors[author] < params.min) {
+        params.min = authors[author];
       }
       return params;
     }
   };
 
   const calculateAuthorClass = function (count, params) {
-    const normalizedCount = count - params.min;
-    const normalizedMax = params.max - params.min;
-    const percentage = normalizedCount / normalizedMax;
-    const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+    const classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * optCloudClassCount + 1 );
     return optCloudClassPrefix + classNumber;
   };
 
