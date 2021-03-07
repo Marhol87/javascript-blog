@@ -358,10 +358,10 @@
       <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
     </script>
     <script id="template-tag-link" type="text/x-handlebars-template">
-      <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
+      <li><a href="#tag-{{ id }}">{{ title }}</a></li>
     </script>
     <script id="template-author-link" type="text/x-handlebars-template">
-      <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
+      <li><a href="#author{{ id }}">{{ title }}</a></li>
     </script>
     <script id="template-tag-cloud-link" type="text/x-handlebars-template">
       {{#each tags}}
@@ -370,7 +370,7 @@
     </script>
     <script id="template-author-cloud-link" type="text/x-handlebars-template">
       {{#each authors}}
-      <li><a href="#author{{ articleAuthor }}">{{ author }} ({{count}})</a></li>
+      <li><a class="{{className}}" href="#author{{ author }}">{{ author }} ({{count}})</a></li>
       {{/each}}
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
