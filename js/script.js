@@ -1,11 +1,21 @@
 'use strict';
 {
   const templates = {
-    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
-    tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
-    authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
-    tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
-    authorCloudLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
+    articleLink: Handlebars.compile(
+      document.querySelector('#template-article-link').innerHTML
+    ),
+    tagLink: Handlebars.compile(
+      document.querySelector('#template-tag-link').innerHTML
+    ),
+    authorLink: Handlebars.compile(
+      document.querySelector('#template-author-link').innerHTML
+    ),
+    tagCloudLink: Handlebars.compile(
+      document.querySelector('#template-tag-cloud-link').innerHTML
+    ),
+    authorCloudLink: Handlebars.compile(
+      document.querySelector('#template-author-cloud-link').innerHTML
+    ),
   };
 
   const titleClickHandler = function (event) {
@@ -85,7 +95,7 @@
       /* find the title element */
 
       const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTMLData = { id: articleId, title: articleTitle };
       const linkHTML = templates.articleLink(linkHTMLData);
       /* create HTML of the link */
 
@@ -106,12 +116,11 @@
 
   /* Module 7*/
   const calculateTagsParams = function (tags) {
-    const params = {max: 0, min: 9999 };
+    const params = { max: 0, min: 9999 };
     for (let tag in tags) {
       if (tags[tag] > params.max) {
         params.max = tags[tag];
-      }
-      else if (tags[tag] < params.min) {
+      } else if (tags[tag] < params.min) {
         params.min = tags[tag];
       }
     }
@@ -119,7 +128,10 @@
   };
 
   const calculateTagClass = function (count, params) {
-    const classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * optCloudClassCount + 1 );
+    const classNumber = Math.floor(
+      ((count - params.min) / (params.max - params.min)) * optCloudClassCount +
+        1
+    );
 
     return optCloudClassPrefix + classNumber;
   };
@@ -143,7 +155,7 @@
       console.log('articleTagsArray:', articleTagsArray);
       /* START LOOP: for each tag */
       for (let tag of articleTagsArray) {
-        const linkHTMLData = {id: tag, title: tag};
+        const linkHTMLData = { id: tag, title: tag };
         const linkHTML = templates.tagLink(linkHTMLData);
         /* add generated code to html variable */
         html = html + linkHTML;
@@ -167,14 +179,14 @@
     const tagsParams = calculateTagsParams(allTags);
     console.log('tagsParams:', tagsParams);
     // let allTagsHTML = '';
-    const allTagsData = {tags: []};
+    const allTagsData = { tags: [] };
 
     /* [NEW] START LOOP: for each tag in allTags: */
     for (let tag in allTags) {
       allTagsData.tags.push({
         tag: tag,
         count: allTags[tag],
-        className: calculateTagClass(allTags[tag], tagsParams)
+        className: calculateTagClass(allTags[tag], tagsParams),
       });
     }
     tagList.innerHTML = templates.tagCloudLink(allTagsData);
@@ -231,12 +243,11 @@
   addClickListenersToTags();
 
   const calculateAuthorsParams = function (authors) {
-    const params = {max: 0, min: 9999 };
+    const params = { max: 0, min: 9999 };
     for (let author in authors) {
       if (authors[author] > params.max) {
         params.max = authors[author];
-      }
-      else if (authors[author] < params.min) {
+      } else if (authors[author] < params.min) {
         params.min = authors[author];
       }
       return params;
@@ -244,7 +255,10 @@
   };
 
   const calculateAuthorClass = function (count, params) {
-    const classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * optCloudClassCount + 1 );
+    const classNumber = Math.floor(
+      ((count - params.min) / (params.max - params.min)) * optCloudClassCount +
+        1
+    );
     return optCloudClassPrefix + classNumber;
   };
 
@@ -263,7 +277,7 @@
       const articleAuthor = article.getAttribute('data-author');
       console.log('articleAuthor:', articleAuthor);
 
-      const linkHTMLData = {id: articleAuthor, title: articleAuthor};
+      const linkHTMLData = { id: articleAuthor, title: articleAuthor };
       const linkHTML = templates.authorLink(linkHTMLData);
 
       /* add generated code to html variable */
@@ -288,14 +302,17 @@
     const authorsParams = calculateAuthorsParams(allAuthors);
     console.log('authorsParams:', authorsParams);
 
-    const allAuthorsData = {authors: []};
+    const allAuthorsData = { authors: [] };
 
     /* [NEW] START LOOP: for each author in allAuthors: */
     for (let articleAuthor in allAuthors) {
       allAuthorsData.authors.push({
         author: articleAuthor,
         count: allAuthors[articleAuthor],
-        className: calculateAuthorClass(allAuthors[articleAuthor], authorsParams)
+        className: calculateAuthorClass(
+          allAuthors[articleAuthor],
+          authorsParams
+        ),
       });
     }
     authorList.innerHTML = templates.authorCloudLink(allAuthorsData);
@@ -349,5 +366,4 @@
     }
   };
   addClickListenersToAuthors();
-
 }
